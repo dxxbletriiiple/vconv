@@ -1,5 +1,15 @@
 {
-  "dependencies": {
-    "inquirer": "^9.1.4"
-  }
+	"name": "vconv",
+	"author": {
+		"name": "dxxbletriiiple",
+		"email": "dxxbletriiiple@gmail.com",
+		"url": "http://dxxbletriiiple.ru"
+	},
+	"type": "module",
+	"dependencies": {
+		"inquirer": "^9.1.4"
+	},
+	"devDependencies": {
+		"@types/inquirer": "^9.0.3"
+	}
 }
