@@ -6,3 +6,5 @@ test.*
 .vcode
 .idea
 .DS_Store
+*.mp4
+*.mov
