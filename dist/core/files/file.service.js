@@ -29,14 +29,34 @@ var __awaiter =
 			step((generator = generator.apply(thisArg, _arguments || [])).next());
 		});
 	};
-import { FfmpegExecutor } from './command/ffmpeg/ffmpeg.executor.js';
-import { ConsoleLogger } from './out/console-logger/console-logger.js';
-export class App {
-	run() {
+import { promises } from 'fs';
+import { fileURLToPath } from 'url';
+import path, { dirname, isAbsolute, join } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export class FileService {
+	isExist(path) {
 		return __awaiter(this, void 0, void 0, function* () {
-			new FfmpegExecutor(ConsoleLogger.getInstance()).execute();
+			try {
+				yield promises.stat(path);
+				return true;
+			} catch (_a) {
+				return false;
+			}
+		});
+	}
+	getFilePath(path, name, ext) {
+		if (!isAbsolute(path)) {
+			path = join(__dirname + '/' + path);
+		}
+		return join(dirname(path) + '/' + name + '.' + ext);
+	}
+	deleteFileIfExist(path) {
+		return __awaiter(this, void 0, void 0, function* () {
+			if (yield this.isExist(path)) {
+				promises.unlink(path);
+			}
 		});
 	}
 }
-const run = new App();
-run.run();
